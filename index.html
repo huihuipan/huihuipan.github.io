@@ -23,7 +23,7 @@
 <li>修改数据：这类接口会涉及到数据变化，多次请求应该直接拦截并提示用户操作过快。</li>
 </ul>
 <h2 id="请求缓存"><a href="#请求缓存" class="headerlink" title="请求缓存"></a>请求缓存</h2><p>如果在跳转前需要先查询跳转页面是否存在数据再决定是否可跳转，那么就会出现这种情况，A页面请求a接口-&gt;跳转B页面请求a接口获取数据填充页面，连续请求了两个一样的接口，导致资源浪费以及 Loading 加倍，为了处理这种情况，可以实现请求缓存。<br>因为获取数据不会对数据进行更改，连续两次同一获取数据接口请求时，可以把第一次的数据缓存起来，第二次请求时直接从第一次请求的缓存中获取，不仅可以减少请求次数，还能加快第二次的请求相应时间。</p>
-<h2 id="请求中断"><a href="#请求中断" class="headerlink" title="请求中断"></a>请求中断</h2><p>当某种原因导致请求的接口不再作用到页面时，可以中断请求，减少服务器压力。</p>
+<h2 id="请求中断"><a href="#请求中断" class="headerlink" title="请求中断"></a>请求中断</h2><p>当某种原因导致请求的接口不再作用到页面时，可以中断请求，减少服务器压力。<br>前端在业务上可以给同类型接口一个相同的tag，表示页面中这类tag中同时请求的时候只会请求最后一个，仍在请求的相同tag的接口将会被中断。如同一页面存在list1 和 list2，而两个list由两个接口请求获取，并且同一时间只会展示其中一个，当快速切换的时候，被切换的list已经不会显示，所以仍在发出的请求将被拦截，由即将展示的list的接口请求新数据回来。</p>
 </div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/10/22/MySQL-%E4%B8%80%E4%BA%9B%E7%BA%A6%E5%AE%9A/">MySQL-一些约定</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-10-22</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/DB/">DB</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/mysql/">mysql</a></span><div class="content"><ul>
 <li>一般情况下可以不使用<em>外键</em>, 外键会对数据表进行强关联，保证数据的完整性，但会导致修改删除性能下降，不使用外键可以简化操作，提高性能，但是会导致有数据冗余。</li>
 <li>表明名尽量使用名词单数，因为有些名词单复数没有规律，如 person 的复数使 people。</li>
